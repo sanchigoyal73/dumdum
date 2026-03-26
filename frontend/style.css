@@ -1,0 +1,123 @@
+:root {
+    --primary-color: #0a3d62;
+    --secondary-color: #f6f8fa;
+    --accent-color: #007bff;
+    --text-color: #333;
+    --light-gray: #e9ecef;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    margin: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--primary-color);
+    padding: 1rem 0;
+    color: white;
+}
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar .brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+.navbar .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 0 1rem;
+}
+
+/* Hero Section */
+.hero {
+    background-color: #f8f9fa;
+    padding: 4rem 0;
+    text-align: center;
+    border-bottom: 1px solid var(--light-gray);
+}
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+.hero p {
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+/* Main Content */
+main.container {
+    padding: 2rem 0;
+}
+
+.quick-links h2, .response-section h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--light-gray);
+    padding-bottom: 0.5rem;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.button-grid button {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.button-grid button:hover {
+    background-color: #0056b3;
+}
+
+/* Response Area */
+#response-display {
+    background-color: #2b2b2b;
+    color: #f1f1f1;
+    border: 1px solid var(--light-gray);
+    border-radius: 5px;
+    padding: 1.5rem;
+    min-height: 200px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+/* Footer */
+.footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+}
