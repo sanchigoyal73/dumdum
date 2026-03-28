@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const API_BASE_URL = 'https://dumdum-0x2e.onrender.com';
+
     // Get button elements
     const viewDirectoryBtn = document.getElementById('view-directory-btn');
     const adminPanelBtn = document.getElementById('admin-panel-btn');
@@ -23,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // View Staff Directory -> /api/users
     viewDirectoryBtn.addEventListener('click', () => {
-        fetch('/api/users')
+        fetch(`${API_BASE_URL}/api/users`)
             .then(response => response.json())
             .then(data => displayResponse(data))
             .catch(error => displayError(error));
@@ -31,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Admin Panel -> /api/admin
     adminPanelBtn.addEventListener('click', () => {
-        fetch('/api/admin')
+        fetch(`${API_BASE_URL}/api/admin`)
             .then(response => response.json())
             .then(data => displayResponse(data))
             .catch(error => displayError(error));
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // System Config -> /api/config
     systemConfigBtn.addEventListener('click', () => {
-        fetch('/api/config')
+        fetch(`${API_BASE_URL}/api/config`)
             .then(response => response.json())
             .then(data => displayResponse(data))
             .catch(error => displayError(error));
@@ -47,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Internal Tools -> /api/internal
     internalToolsBtn.addEventListener('click', () => {
-        fetch('/api/internal')
+        fetch(`${API_BASE_URL}/api/internal`)
             .then(response => response.json())
             .then(data => displayResponse(data))
             .catch(error => displayError(error));
@@ -57,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     searchEmployeeBtn.addEventListener('click', () => {
         // Using a hardcoded query that looks legitimate but contains a payload
         const query = 'hello<script>alert("XSS")</script>'; 
-        fetch(`/api/search?q=${encodeURIComponent(query)}`)
+        fetch(`${API_BASE_URL}/api/search?q=${encodeURIComponent(query)}`)
             .then(response => response.json())
             .then(data => displayResponse(data))
             .catch(error => displayError(error));

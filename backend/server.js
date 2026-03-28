@@ -7,12 +7,15 @@ const app = express();
 const path = require('path'); // Import path module
 const port = process.env.PORT || 3000;
 
+// Configure CORS to allow your Vercel frontend
+const corsOptions = {
+    origin: 'https://dumdum-roan.vercel.app',
+    optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
+
 // Serve static files from the 'frontend' directory
 app.use(express.static(path.join(__dirname, '../frontend')));
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors());
 
 // Vulnerability: Poor Logging Practices - Logs full request headers
 app.use((req, res, next) => {
