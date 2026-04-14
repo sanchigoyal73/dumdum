@@ -151,6 +151,22 @@ app.get('/api/search', (req, res) => {
     res.json({ query: query, results: [] });
 });
 
+// CA Records Implementation
+const crypto = require('crypto');
+const fs = require('fs');
+
+// Generate a SHA-256 hash of the current timestamp
+const nowHash = crypto.createHash('sha256').update(new Date().toISOString()).digest('hex');
+
+// Write the CAA record to a file named after the hash
+fs.writeFileSync(`${nowHash}_caa.txt`, `;dumedum.roan.vercel.app`);
+
+// Vulnerability: Poor Logging Practices - Logs full request headers
+app.use((req, res, next) => {
+    console.log('Request Headers:', req.headers);
+    next();
+});
+
 // --- Server Start ---
 app.listen(port, () => {
     console.log(`Vulnerable app listening at http://localhost:${port}`);
