@@ -17,6 +17,17 @@ app.use(cors(corsOptions));
 // Serve static files from the 'frontend' directory
 app.use(express.static(path.join(__dirname, '../frontend')));
 
+// SSL Configuration
+const sslOptions = {
+    key: fs.readFileSync('ssl/key.pem'),
+    cert: fs.readFileSync('ssl/cert.pem'),
+    ca: fs.readFileSync('ssl/ca.pem'),
+    rejectUnauthorized: true
+};
+const https = require('https').createServer(sslOptions, app);
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({ server: https });
+
 // Vulnerability: Poor Logging Practices - Logs full request headers
 app.use((req, res, next) => {
     console.log('Request Headers:', req.headers);
@@ -55,6 +66,7 @@ app.post('/api/comments', (req, res) => {
 // Vulnerability: Command Injection
 app.post('/api/ping', (req, res) => {
     const { host } = req.body;
+    const childProcess = require('child_process');
     exec(`ping -c 3 ${host}`, (error, stdout, stderr) => {
         if (error) {
             return res.status(500).send(`<pre>Error: ${error.message}</pre>`);
@@ -152,6 +164,7 @@ app.get('/api/search', (req, res) => {
 });
 
 // --- Server Start ---
-app.listen(port, () => {
+const fs = require('fs');
+https.listen(port, () => {
     console.log(`Vulnerable app listening at http://localhost:${port}`);
 });
