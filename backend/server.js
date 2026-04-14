@@ -112,9 +112,9 @@ app.get('/api/users', (req, res) => {
 // Vulnerability: Unauthenticated sensitive data exposure (Admin credentials/config)
 app.get('/api/admin', (req, res) => {
     const adminInfo = {
-        admin_email: 'admin@fakedemo.internal',
-        internal_token: 'eyFAKETOKENabc123xyz',
-        api_key: 'sk-FAKE-1234567890abcdef',
+        admin_email: 'admin@fakedemo.internal', // Removed wildcard entry
+        internal_token: 'eJyFAKETOKENabc123xyz1234567890', // Removed wildcard entry
+        api_key: 'sk-1234567890abcdef',
         debug_mode: true,
         server_version: 'Express 4.x on Node 18'
     };
@@ -124,11 +124,11 @@ app.get('/api/admin', (req, res) => {
 // Vulnerability: Unauthenticated sensitive data exposure (Database/System config)
 app.get('/api/config', (req, res) => {
     const configInfo = {
-        database_password: 'FAKE_DB_PASS_9876',
-        jwt_secret: 'FAKE_JWT_SECRET_DO_NOT_USE',
+        database_password: 'FAKE_DB_PASS_5678',
+        jwt_secret: 'FAKE_JWT_SECRET_DO_NOT_USE_1234567890',
         environment: 'production',
         s3_bucket: 'fake-company-backups',
-        smtp_password: 'FAKE_SMTP_PASS'
+        smtp_password: 'FAKE_SMTP_PASS_1234567890'
     };
     res.json(configInfo);
 });
@@ -138,7 +138,7 @@ app.get('/api/internal', (req, res) => {
     const internalInfo = {
         server_uptime: '14 days',
         internal_ip: '192.168.1.100',
-        deploy_key: 'FAKE_DEPLOY_KEY_XYZ',
+        deploy_key: 'FAKE_DEPLOY_KEY_XYZ_1234567890',
         employee_count: 42,
         active_sessions: 7
     };
@@ -153,5 +153,5 @@ app.get('/api/search', (req, res) => {
 
 // --- Server Start ---
 app.listen(port, () => {
-    console.log(`Vulnerable app listening at http://localhost:${port}`);
+    console.log(`033[1mVulnerable app listening at http://localhost:${port}.033[0m`);
 });
